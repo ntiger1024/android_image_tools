@@ -1,0 +1,33 @@
+This program convert full ota data (xx.transfer.list, xx.new.dat.br) in
+android ota package update.zip to image data (xx.ext4.img).
+
+### CC Build
+
+make
+
+### CC Run
+
+./ota_converter system.transfer.list system.new.dat.br system.img
+
+### Python setup and run
+
+# optional python3 -m venv env
+# optional . env/bin/activate
+python3 -m pip install brotli
+./ota_converter.py system.transfer.list system.new.dat.br system.img
+
+### Worlflow
+
+1. Download update.zip of the device you want to hack from forum.
+2. Unzip the update.zip. You get:
+    update
+    |-----xxx.elf
+    |-----xxx.mbn
+    |-----boot.img
+    |-----system.transfer.list
+    |-----system.new.dat.br
+    |...
+
+3. Convert system.transfer.list and system.new.dat.br to system.img which is an
+ext4 filesystem image
+4. Mount the system.img and hack it!

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo "usage: [system/vendor]"
+	exit
+fi
+
+part=$1
+simg2img ${part}.img ${part}.ext4
+mkdir $part
+sudo mount -oloop -text4 ${part}.ext4 $part

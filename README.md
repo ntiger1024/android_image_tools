@@ -69,3 +69,38 @@ mnt-droid vendor
 # 打印abl信息
 ./qcert abl.elf
 ```
+
+6. `emui_extractor`
+
+查看、解压华为ROM包中的UPDATE.APP。
+
+与Android原生img文件相比，有些分区解压出来的img文件，在文件头部会带有4096字节的额外信息，使用Android相关工具处理时如果无法识别，可以去除这部分信息然后再试。
+
+UPDATE.APP中带有crc校验信息，本工具忽略了相关校验。
+
+
+```
+# build
+make
+
+# 查看所有image信息
+$ ./emui_extractor UPDATE.APP list
+=========================================================================
+Sequence              File.img            Size              Type   Device
+=========================================================================
+fe000000         SHA256RSA.img       256.00  B         SHA256RSA   HW7x27
+fe000000               CRC.img       301.01 KB               CRC   HW7x27
+fffffff0            CURVER.img        23.00  B            CURVER   HW7x27
+fffffff1           VERLIST.img        78.00  B           VERLIST   HW7x27
+00000014            VBMETA.img         9.94 KB            VBMETA   HW7x27
+...
+=========================================================================
+
+# 解压并查看vbmeta.img
+$ ./emui_extractor UPDATE.APP dump VBMETA.img vbmeta_orig.img
+$ dd if=vbmeta_orig.img of=vbmeta.img bs=4096 skip=1
+$ avbtool info_image --image vbmeta.img
+
+# 解压所有文件
+$ ./emui_extractor UPDATE.APP dump all
+```

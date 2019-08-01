@@ -106,3 +106,8 @@ $ avbtool info_image --image vbmeta.img
 # 解压所有文件
 $ ./emui_extractor UPDATE.APP dump all
 ```
+
+7. `ozip_cracker`
+
+Find Oppo's ozip decryption key. See [ozip cracker](./ozip_cracker/README.md)
+for details.

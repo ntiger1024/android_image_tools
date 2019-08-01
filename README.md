@@ -78,6 +78,8 @@ mnt-droid vendor
 
 UPDATE.APP中带有crc校验信息，本工具忽略了相关校验。
 
+Windows系统有类似工具: [来源未知，慎用](https://pan.baidu.com/s/1O9M4VWfG6vGFEOkLVs-zuA) (提取码：8ghk)。
+
 
 ```
 # build

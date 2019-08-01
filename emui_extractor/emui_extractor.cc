@@ -41,11 +41,11 @@ static int list_images(const char *in_file) {
   unsigned size_len = 0;
   unsigned type_len = 0;
   for (const auto &img : images) {
-    string size_str = convert_size_to_str(img->hdr_->data_len_);
+    string size_str = convert_size_to_str(img->GetHdr()->data_len_);
     if (size_str.size() > size_len) {
       size_len = size_str.size();
     }
-    unsigned len = strlen(reinterpret_cast<const char *>(img->hdr_->type_));
+    unsigned len = strlen(reinterpret_cast<const char *>(img->GetHdr()->type_));
     if (len > type_len) {
       type_len = len;
     }
@@ -56,16 +56,16 @@ static int list_images(const char *in_file) {
           size_len, "Size", type_len, "Type", "Device");
   fprintf(stdout, "%s\n", line.c_str());
   for (const auto &img : images) {
-    string size_str = convert_size_to_str(img->hdr_->data_len_);
-    int i = sizeof(img->hdr_->hw_id_) - 1;
-    while (i >= 0 && img->hdr_->hw_id_[i] == 0xff) {
+    string size_str = convert_size_to_str(img->GetHdr()->data_len_);
+    int i = sizeof(img->GetHdr()->hw_id_) - 1;
+    while (i >= 0 && img->GetHdr()->hw_id_[i] == 0xff) {
       --i;
     }
     ++i;
-    string device(reinterpret_cast<const char *>(&img->hdr_->hw_id_[0]), i);
-    fprintf(stdout, "%08x %*s.img %*s %*s %8s\n", img->hdr_->sequence_,
-            type_len, img->hdr_->type_, size_len, size_str.c_str(), type_len,
-            img->hdr_->type_, device.c_str());
+    string device(reinterpret_cast<const char *>(&img->GetHdr()->hw_id_[0]), i);
+    fprintf(stdout, "%08x %*s.img %*s %*s %8s\n", img->GetHdr()->sequence_,
+            type_len, img->GetHdr()->type_, size_len, size_str.c_str(), type_len,
+            img->GetHdr()->type_, device.c_str());
   }
   fprintf(stdout, "%s\n", line.c_str());
 }
@@ -80,7 +80,7 @@ static int dump_image(const char *in_file, const char *img_name,
 
   auto images = image_file->GetAllImages();
   for (const auto &img : images) {
-    string type(reinterpret_cast<const char *>(img->hdr_->type_));
+    string type(reinterpret_cast<const char *>(img->GetHdr()->type_));
     type += ".img";
 
     if (out_file == string("all")) {

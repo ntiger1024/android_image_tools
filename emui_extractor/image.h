@@ -21,6 +21,7 @@
 class RoImageFile;
 
 class Image {
+  friend RoImageFile;
  public:
   static const uint32_t kMagic = 0xA55AAA55;
 
@@ -49,6 +50,12 @@ class Image {
   }
 
   bool Dump(const std::string &out_fn) const;
+  std::shared_ptr<ImageHdr> GetHdr() const {
+    return hdr_;
+  }
+
+ private:
+  Image(const Image &) = delete;
   Image &operator=(const Image &) = delete;
 
   std::shared_ptr<ImageHdr> hdr_;

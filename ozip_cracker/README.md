@@ -30,7 +30,7 @@ format called 'ozip'. The ozip file is created like this:
 Sometimes I want to unpack ozip file to check something. So I must find the way
 to decrypt the ozip file. There are already some tools to decrypt them. But they
 don't support newer devices like R17, Reno, etc. After google I get this
-artical: [](https://bkerler.github.io/reversing/2019/04/24/the-game-begins/).
+[artical](https://bkerler.github.io/reversing/2019/04/24/the-game-begins/).
 From it I know that:
 
 1. The encrytion algorithm is AES-128-ECB
@@ -53,7 +53,7 @@ d4d2cd61d4afdce13b5e01221bd14d20
 ```
 
 When you get the key, you can decrypt ozip files using which tools you like.
-Here I use this tool: [](https://github.com/ntiger1024/oppo_ozip_decrypt).
+Here I use this tool: [`oppo_ozip_decrypt`](https://github.com/ntiger1024/oppo_ozip_decrypt).
 
 ```
 $ python ozipdecrypt.py PBDM00_11_A.17_OTA_0170_all_201901072337.ozip d4d2cd61d4afdce13b5e01221bd14d20

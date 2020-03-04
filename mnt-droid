@@ -8,4 +8,4 @@ fi
 part=$1
 simg2img ${part}.img ${part}.ext4
 mkdir $part
-sudo mount -oloop -text4 ${part}.ext4 $part
+sudo mount -oloop -text4 -r ${part}.ext4 $part
